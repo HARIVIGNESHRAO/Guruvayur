@@ -1,0 +1,19 @@
+{
+  "name": "contact-form-api",
+  "version": "1.0.0",
+  "description": "Node.js Express server for handling contact form submissions",
+  "main": "server1.js",
+  "scripts": {
+    "start": "node server1.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.7.0",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=16.x"
+  },
+  "author": "",
+  "license": "ISC"
+}
