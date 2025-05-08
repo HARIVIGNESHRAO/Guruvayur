@@ -1,20 +1,21 @@
-const express = require('express');
+
 const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
-const PORT = 4200;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect('mongodb+srv://harisonu151:zZYoHOEqz8eiI3qP@salaar.st5tm.mongodb.net/park', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+mongoose
+    .connect("mongodb+srv://harisonu151:zZYoHOEqz8eiI3qP@salaar.st5tm.mongodb.net/park", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then(() => console.log('MongoDB connected'))
+    .catch((err) => console.error('MongoDB connection error:', err));
 
 // Schema & Model
 const contactSchema = new mongoose.Schema({
@@ -22,7 +23,7 @@ const contactSchema = new mongoose.Schema({
   email: String,
   subject: String,
   message: String,
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
 });
 
 const Contact = mongoose.model('Contact', contactSchema, 'contact');
@@ -38,5 +39,5 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
-// Start Server
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+// Export the Express app for Vercel
+module.exports = app;
